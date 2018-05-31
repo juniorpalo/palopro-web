@@ -1,0 +1,11 @@
+img {
+    border-radius: 100px;
+    width: 200px;
+    height: 300px;
+}
+
+.home-page {
+    background-image: url("/images/IMG_0780.jpg");
+    height: 1000px;
+    width: 1500px;
+}
