@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import dateFns from 'date-fns'
 import './Calendar.css'
+import Nav from './Nav'
 
 class Calendar extends Component {
     state = {
@@ -111,6 +112,7 @@ class Calendar extends Component {
     render() {
         return (
             <div className="calendar">
+            <Nav/>
                 {this.renderHeader()}
                 {this.renderDays()}
                 {this.renderCells()}

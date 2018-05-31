@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import './Home.css';
+import ReactDOM from 'react-dom';
+import { SocialIcon } from 'react-social-icons';
+import Nav from './Nav'
 
 class Home extends Component {
     render(){
         return(
             <div className="home-page">
             <div className="home-top">
-               <img src="/images/DSC05418.jpg" alt="ME"/>
+            <Nav/>
+               <img className="profile" src="/images/DSC05418.jpg" alt="ME"/>
                 <h1>Palomino Productions</h1>
             </div>
             <div className="home-mid">
@@ -19,7 +23,10 @@ class Home extends Component {
                 <br/> people’s stories and to eventually help them better remember a very important moment in life. Feel free to contact 
                 <br/>me with any inquires, along with information on the event you want me to cover. I can’t wait to work with you! </p>
             </div>
-
+            <SocialIcon url="https://www.linkedin.com/in/juan-carlos-palomino-jr/"/>
+            <SocialIcon url="https://www.instagram.com/palominoproductions/"/>
+            <SocialIcon url="https://twitter.com/juniorpalo"/>
+            <SocialIcon url="https://www.facebook.com/junior.palomino.77"/>
             </div>
         )
     }

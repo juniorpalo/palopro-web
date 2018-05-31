@@ -11,20 +11,15 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <div className="App">
-      <nav>
-        <Link to ='/'> Login </Link>
-        <Link to ='/Home'> || Home </Link>
-        <Link to ='/Projects'> || Projects </Link>
-        <Link to ='/Calendar'> || Calendar </Link>
-        <Link to ='/ContactMe'> || Contact Me </Link>
-      </nav>
-      <Route exact path='/' component={Login}/>
-      <Route exact path='/Home' component={Home}/>
-      <Route exact path='/Projects' component={Projects}/>
-      <Route exact path='/Calendar' component={Calendar}/>
-      <Route exact path='/ContactMe' component={ContactMe}/>
-      </div>
+        <div className="App">
+          <Switch>
+            <Route exact path='/' component={Login} />
+            <Route path='/Home' component={Home} />
+            <Route path='/Projects' component={Projects} />
+            <Route path='/Calendar' component={Calendar} />
+            <Route path='/ContactMe' component={ContactMe} />
+          </Switch>
+        </div>
       </Router>
     );
   }
