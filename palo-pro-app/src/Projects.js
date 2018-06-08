@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Nav from './Nav'
 
+
 class Projects extends Component {
-    render(){
+    render = () => {
         return(
             <div>
                 <Nav/>
@@ -11,5 +12,4 @@ class Projects extends Component {
         )
     }
 }
-
 export default Projects

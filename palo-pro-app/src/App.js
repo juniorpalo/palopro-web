@@ -4,7 +4,7 @@ import Home from './Home'
 import Projects from './Projects'
 import Calendar from './Calendar'
 import ContactMe from './ContactMe'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 class App extends Component {

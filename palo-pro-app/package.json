@@ -4,10 +4,16 @@
   "private": true,
   "dependencies": {
     "date-fns": "^1.29.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-html-email": "^3.0.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-video-js": "^0.1.96",
+    "redux": "^4.0.0",
+    "sparkpost": "^2.1.2",
+    "video-react": "^0.10.9"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -11,3 +11,17 @@
 .home-page {
     color: black;
 }
+
+.op {
+    background-color: gray;
+    opacity: .5;
+    width: 365px;
+}
+
+.op:hover{
+    opacity: 1.0;
+}
+
+h1 {
+    color: black;
+}
