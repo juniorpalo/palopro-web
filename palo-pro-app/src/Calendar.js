@@ -11,30 +11,41 @@ class Calendar extends Component {
         }
     };
 
-    
+
     static propTypes = {
         createEvent: ReactPropTypes.func.isRequired
     }
 
     handleOnChange = (event) => {
-        if (event.target.id === "nameInput"){
-            this.setState({eventInformation:{
-                newPersonName: event.target.value
-            }
+        event.persist()
+        if (event.target.id === "nameInput") {
+            this.setState((prev) => {
+                return {
+                    eventInformation: {
+                        ...prev.eventInformation,
+                        newPersonName: event.target.value
+                    }
+                }
             })
         }
-
-        else if (event.target.id === "emailInput"){
-            this.setState({eventInformation:{
-                newEmail: event.target.value
-            }
+        else if (event.target.id === "emailInput") {
+            this.setState((prev) => {
+                return {
+                    eventInformation: {
+                        ...prev.eventInformation,
+                        newEmail: event.target.value
+                    }
+                }
             })
         }
-
-        else if (event.target.id === "dateInput"){
-            this.setState({eventInformation:{
-                newDate: event.target.value
-            }
+        else if (event.target.id === "dateInput") {
+            this.setState((prev) => {
+                return {
+                    eventInformation: {
+                        ...prev.eventInformation,
+                        newDate: event.target.value
+                    }
+                }
             })
         }
 
@@ -45,18 +56,18 @@ class Calendar extends Component {
             const existingEvents = prev.event
             existingEvents.push(event)
 
-            return{
+            return {
                 events: existingEvents
             }
         })
     }
 
     getEvents = async () => {
-        try{
+        try {
             const response = await fetch('http://localhost:3001/Calendar')
             const event = await response.json()
             this.setState({ event })
-        } catch (error){
+        } catch (error) {
             this.setState({ errorMessage: error })
         }
     }
@@ -71,26 +82,28 @@ class Calendar extends Component {
             body: JSON.stringify(this.state.eventInformation)
         }
         console.log("click was clicked")
-        try{
+        try {
             const postEventResponse = await fetch('http://localhost:3001/Calendar', postInit)
             const event = await postEventResponse.json()
             this.createEvent(event)
         } catch (error) {
-            this.setState({errorMessage: error})
+            this.setState({ errorMessage: error })
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getEvents()
     }
 
     displayEvent = () => {
-        if (this.state.event){
+        if (this.state.event) {
             console.log(this.state.event)
-            return this.state.event.map((key)=> {
+            return this.state.event.map((key) => {
                 console.log(key)
                 return (
                     <div key={key._id}>
+                        {key.newPersonName}<br/>
+                        {key.newEmail}<br/>
                         {key.newDate}
                     </div>
                 )
@@ -103,11 +116,11 @@ class Calendar extends Component {
             <div>
                 <Nav />
                 <div>
-                    <div><label>Name:</label><input id="nameInput" onChange={this.handleOnChange}/></div>
-                    <div><label>Email:</label><input id="emailInput" type ="email" onChange={this.handleOnChange}/></div>
-                    <div><label>Date:</label><input id="dateInput" type ="datetime-local" onChange={this.handleOnChange}/></div>
+                    <div><label>Name:</label><input id="nameInput" onChange={this.handleOnChange} /></div>
+                    <div><label>Email:</label><input id="emailInput" type="email" onChange={this.handleOnChange} /></div>
+                    <div><label>Date:</label><input id="dateInput" type="datetime-local" onChange={this.handleOnChange} /></div>
                     <button onClick={this.handleOnCLick}>New Event</button>
-                    
+
                 </div>
                 {this.displayEvent()}
             </div>

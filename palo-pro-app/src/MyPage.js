@@ -7,62 +7,65 @@ class MyPage extends Component {
     state = {
     }
     getEvents = async () => {
-        try{
+        try {
             const response = await fetch('http://localhost:3001/Calendar')
             const event = await response.json()
             this.setState({ event })
-        } catch (error){
+        } catch (error) {
             this.setState({ errorMessage: error })
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getEvents()
     }
 
     displayEvent = () => {
-            console.log(this.state.event)
-            return this.state.event.map((key)=> {
-                console.log(key)
-                return (
-                    <div key={key._id}>
-                        {key.newDate} <Confirm updateEvent={(e)=>{
-                            e.preventDefault()
-                            this.updateEvent({
-                                _id: key._id,
-                                confirm: true
-                            })}
-                        }/>
-                    </div>
-                )
-            })
-        
+        console.log(this.state.event)
+        return this.state.event.map((key) => {
+            console.log(key)
+            return (
+                <div key={key._id}>
+                    {key.newPersonName}
+                    {key.newEmail}
+                    {key.newDate} <Confirm updateEvent={(e) => {
+                        e.preventDefault()
+                        this.updateEvent({
+                            _id: key._id,
+                            confirm: true
+                        })
+                    }
+                    } />
+                </div>
+            )
+        })
+
     }
 
     updateEvent = async (theData) => {
         console.log('hit the function')
-        const dataFromConfirm = {"_id": theData}
+        const dataFromConfirm = { "_id": theData }
         const updateData = {
             method: "PUT",
             mode: "cors",
             headers: {
-                "Content-Type" : "Application/json"
+                "Content-Type": "Application/json"
             },
             body: JSON.stringify(dataFromConfirm)
         }
         const updateEventData = await fetch('http://localhost:3001/Calendar', updateData)
         const event = await updateEventData.json()
         this.setState({ event })
-    } 
+    }
 
-    render(){
+    render() {
         console.log(this.state.event)
-        if(!this.state.event){
+        if (!this.state.event) {
             return <div>loading</div>
         }
-        return(
+        return (
             <div>
-                <Nav/>
+                <Nav />
                 {this.displayEvent()}
             </div>
         )
