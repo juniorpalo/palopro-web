@@ -7,8 +7,8 @@ class Nav extends Component {
         return (
             <div>
                 <nav>
-                    <Link to='/'> Login </Link>
-                    |<Link to='/Home'> Home </Link>
+                    <Link to='/'> Admin </Link>
+                    |<Link to='/Home'> About </Link>
                     | <Link to='/Projects'> Projects </Link>
                     |<Link to='/Calendar'> Calendar </Link>
                     | <Link to='/ContactMe'> Contact Me </Link>
