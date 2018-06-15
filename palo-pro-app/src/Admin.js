@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Nav from './Nav'
 import { Redirect } from 'react-router-dom'
+import './Admin.css'
 
 class Admin extends Component {
     state = {
@@ -23,10 +24,10 @@ class Admin extends Component {
         return <Redirect to ='/MyPage'/>
         }
         return(
-            <div>
+            <div className="admin-page">
                 <Nav/>
                 <div>
-                    <h1>Admin:</h1>
+                    <h1>Admin Login:</h1>
                     Username:<br/>
                     <input type="text" name="username" pattern="palopro" required/><br/>
                     Password:<br/>

@@ -1,0 +1,18 @@
+.masterList {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.item {
+    margin: 50px;
+    background-color: black;
+    color: white;
+    max-width: 200px;
+}
+
+.myPage {
+    background-image: url("/images/IMG_0780.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw;
+}

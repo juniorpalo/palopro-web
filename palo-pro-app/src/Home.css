@@ -1,27 +1,28 @@
 .profile{
-    border-radius: 100%;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    position: relative;
+    right: 100px;
 }
 
-.home-top{
+.imgHold {
+    border-radius: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.home-page{
     background-image: url("/images/IMG_0780.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    height: 1000px;
 }
 
 .home-page {
     color: black;
 }
 
-.op {
-    background-color: gray;
-    opacity: .5;
-    width: 365px;
-}
-
-.op:hover{
-    opacity: 1.0;
-}
-
-h1 {
-    color: black;
+.home-mid {
+    background-color: white;
+    max-width: 1000px;;
 }

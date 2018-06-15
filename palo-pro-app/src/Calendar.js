@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Nav from './Nav'
 import ReactPropTypes from 'prop-types'
+import './Calendar.css'
 
 class Calendar extends Component {
     state = {
@@ -96,12 +97,14 @@ class Calendar extends Component {
     }
 
     displayEvent = () => {
-        if (this.state.event) {
-            console.log(this.state.event)
-            return this.state.event.map((key) => {
+        if (this.state.event){
+        const approvedEvents = this.state.event.filter((event) => {
+            return (event.confirm) === true
+        })
+            return approvedEvents.map((key) => {
                 console.log(key)
                 return (
-                    <div key={key._id}>
+                    <div key={key._id} className="item">
                         {key.newPersonName}<br/>
                         {key.newEmail}<br/>
                         {key.newDate}
@@ -109,13 +112,14 @@ class Calendar extends Component {
                 )
             })
         }
-    }
+        }
+
     render() {
         console.log(this.state)
         return (
-            <div>
+            <div className="calendar">
                 <Nav />
-                <div>
+                <div className="event-input">
                     <div><label>Name:</label><input id="nameInput" onChange={this.handleOnChange} /></div>
                     <div><label>Email:</label><input id="emailInput" type="email" onChange={this.handleOnChange} /></div>
                     <div><label>Date:</label><input id="dateInput" type="datetime-local" onChange={this.handleOnChange} /></div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Nav from './Nav'
 import Confirm from './Confirm';
+import './MyPage.css'
 
 
 class MyPage extends Component {
@@ -25,17 +26,24 @@ class MyPage extends Component {
         return this.state.event.map((key) => {
             console.log(key)
             return (
-                <div key={key._id}>
-                    {key.newPersonName}
-                    {key.newEmail}
+                <div key={key._id} className="item">
+                    {key.newPersonName}<br/>
+                    {key.newEmail}<br/>
                     {key.newDate} <Confirm updateEvent={(e) => {
                         e.preventDefault()
                         this.updateEvent({
                             _id: key._id,
+                            newDate: key.newDate,
+                            newEmail: key.newEmail,
+                           newPersonName: key.newPersonName,
                             confirm: true
                         })
                     }
-                    } />
+                    } /><button onClick={(e) => {
+                        this.deleteEvent(key)
+                    }}>
+                        Cancel
+                    </button>
                 </div>
             )
         })
@@ -43,19 +51,33 @@ class MyPage extends Component {
     }
 
     updateEvent = async (theData) => {
-        console.log('hit the function')
-        const dataFromConfirm = { "_id": theData }
+        console.log('hit the function', theData)
+
         const updateData = {
             method: "PUT",
             mode: "cors",
             headers: {
                 "Content-Type": "Application/json"
             },
-            body: JSON.stringify(dataFromConfirm)
+            body: JSON.stringify(theData)
         }
         const updateEventData = await fetch('http://localhost:3001/Calendar', updateData)
         const event = await updateEventData.json()
-        this.setState({ event })
+        this.getEvents()
+    }
+
+    deleteEvent = async (eventData) => {
+        const deleteData = {
+            method: "DELETE",
+            mode: "cors",
+            headers: {
+                "Content-Type" : "Application/json"
+            },
+            body: JSON.stringify(eventData)
+        }
+        const deleteEventData = await fetch('http://localhost:3001/Calendar', deleteData)
+        const event = await deleteEventData.json()
+        this.getEvents()
     }
 
     render() {
@@ -64,9 +86,13 @@ class MyPage extends Component {
             return <div>loading</div>
         }
         return (
-            <div>
+            <div className="myPage">
+                <div className="admin-top">
                 <Nav />
+                </div>
+                <div className="masterList">
                 {this.displayEvent()}
+                </div>
             </div>
         )
     }
